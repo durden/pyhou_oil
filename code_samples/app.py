@@ -70,10 +70,10 @@ def plot_production_by_month():
     return plot
 
 
-def _create_curve(xvals, yvals, color):
+def _create_curve(title, xvals, yvals, color):
     """Helper to create a new curve with given data and color"""
 
-    curve = Qwt.QwtPlotCurve()
+    curve = Qwt.QwtPlotCurve(title)
     curve.setPen(QtGui.QPen(color))
     curve.setData(xvals, yvals)
     curve.setCurveType(Qwt.QwtPlotCurve.Yfx)
@@ -101,18 +101,19 @@ def plot_production_by_state():
     ak_vals = hdf5.root.data.production_by_state_month.cols.ak_barrels[:]
     ca_vals = hdf5.root.data.production_by_state_month.cols.ca_barrels[:]
 
-    curve = _create_curve(x_vals, la_vals, QtCore.Qt.green)
+    curve = _create_curve('La', x_vals, la_vals, QtCore.Qt.green)
     curve.attach(plot)
 
-    curve = _create_curve(x_vals, tx_vals, QtCore.Qt.blue)
+    curve = _create_curve('Tx', x_vals, tx_vals, QtCore.Qt.blue)
     curve.attach(plot)
 
-    curve = _create_curve(x_vals, ak_vals, QtCore.Qt.red)
+    curve = _create_curve('Ak', x_vals, ak_vals, QtCore.Qt.red)
     curve.attach(plot)
 
-    curve = _create_curve(x_vals, ca_vals, QtCore.Qt.yellow)
+    curve = _create_curve('Ca', x_vals, ca_vals, QtCore.Qt.yellow)
     curve.attach(plot)
 
+    plot.insertLegend(Qwt.QwtLegend())
     plot.replot()
 
     return plot
