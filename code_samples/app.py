@@ -29,6 +29,19 @@ class TimeScaleDraw(Qwt.QwtScaleDraw):
         return Qwt.QwtText((date.strftime("%b/%Y")))
 
 
+class StateProductionDialog(QtGui.QDialog):
+    """Dialog to plot oil production by state"""
+
+    def __init__(self, plot, parent):
+        """init"""
+
+        super(StateProductionDialog, self).__init__(parent)
+
+        hlayout = QtGui.QHBoxLayout()
+        hlayout.setMargin(0)
+        hlayout.addWidget(plot)
+        self.setLayout(hlayout)
+
 def plot_production_by_month():
     """Show data in qwt plot"""
 
@@ -56,6 +69,50 @@ def plot_production_by_month():
 
     return plot
 
+def plot_production_by_state():
+    """Show data in qwt plot"""
+
+    plot = Qwt.QwtPlot()
+    plot.setTitle("Oil Production by Month")
+    plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Date")
+    plot.setAxisTitle(Qwt.QwtPlot.yLeft, "Barrels (in thousands)")
+
+    # Need custom scale to set labels to month/year
+    plot.setAxisScaleDraw(Qwt.QwtPlot.xBottom, TimeScaleDraw())
+
+    hdf5 = tables.openFile(conversion.HDF5_FILENAME)
+    la_vals = []
+    tx_vals = []
+    ak_vals = []
+    ca_vals = []
+    y_vals = []
+
+    y_vals = hdf5.root.data.production_by_state_month.cols.date[:]
+    la_vals = hdf5.root.data.production_by_state_month.cols.la_barrels[:]
+    tx_vals = hdf5.root.data.production_by_state_month.cols.tx_barrels[:]
+    ak_vals = hdf5.root.data.production_by_state_month.cols.ak_barrels[:]
+    ca_vals = hdf5.root.data.production_by_state_month.cols.ca_barrels[:]
+
+    curve = Qwt.QwtPlotCurve("La")
+    curve.attach(plot)
+    curve.setData(la_vals, y_vals)
+
+    curve = Qwt.QwtPlotCurve("Tx")
+    curve.attach(plot)
+    curve.setData(tx_vals, y_vals)
+
+    curve = Qwt.QwtPlotCurve("Ak")
+    curve.attach(plot)
+    curve.setData(ak_vals, y_vals)
+
+    curve = Qwt.QwtPlotCurve("Ca")
+    curve.attach(plot)
+    curve.setData(ca_vals, y_vals)
+
+    plot.replot()
+
+    return plot
+
 
 def main():
     """main"""
@@ -68,6 +125,10 @@ def main():
 
     window.setCentralWidget(plot_production_by_month())
     window.show()
+
+    state_prod_window = StateProductionDialog(plot_production_by_state(),
+                                                                        window)
+    state_prod_window.show()
 
     sys.exit(app.exec_())
 
