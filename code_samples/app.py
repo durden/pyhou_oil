@@ -29,18 +29,16 @@ class TimeScaleDraw(Qwt.QwtScaleDraw):
         return Qwt.QwtText((date.strftime("%b/%Y")))
 
 
-def qwt():
+def plot_production_by_month():
     """Show data in qwt plot"""
 
     plot = Qwt.QwtPlot()
-    plot.setTitle("Oil Production by Year")
+    plot.setTitle("Oil Production by Month")
     plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Date")
     plot.setAxisTitle(Qwt.QwtPlot.yLeft, "Barrels (in thousands)")
 
     # Need custom scale to set labels to month/year
     plot.setAxisScaleDraw(Qwt.QwtPlot.xBottom, TimeScaleDraw())
-
-    curve = Qwt.QwtPlotCurve("Barrels (in thousands)")
 
     hdf5 = tables.openFile(conversion.HDF5_FILENAME)
     x_vals = []
@@ -50,8 +48,10 @@ def qwt():
         y_vals.append(row[0])
         x_vals.append(row[1])
 
+    curve = Qwt.QwtPlotCurve("Barrels (in thousands)")
     curve.attach(plot)
     curve.setData(x_vals, y_vals)
+
     plot.replot()
 
     return plot
@@ -62,11 +62,11 @@ def main():
 
     # Convert data then we can interface with pytables exclusively
     conversion.convert_xls_to_hdf5(conversion.XLS_FILENAME,
-                                                    conversion.HDF5_FILENAME)
+                                                conversion.HDF5_FILENAME, 1)
     app = QtGui.QApplication(sys.argv)
     window = QtGui.QMainWindow()
 
-    window.setCentralWidget(qwt())
+    window.setCentralWidget(plot_production_by_month())
     window.show()
 
     sys.exit(app.exec_())
