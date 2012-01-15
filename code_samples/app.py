@@ -7,7 +7,7 @@ Simple app to demonstrate writing an MVC application for oil industry.
 import datetime
 import sys
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 import PyQt4.Qwt5 as Qwt
 
 import tables
@@ -69,6 +69,19 @@ def plot_production_by_month():
 
     return plot
 
+
+def _create_curve(xvals, yvals, color):
+    """Helper to create a new curve with given data and color"""
+
+    curve = Qwt.QwtPlotCurve()
+    curve.setPen(QtGui.QPen(color))
+    curve.setData(xvals, yvals)
+    curve.setCurveType(Qwt.QwtPlotCurve.Yfx)
+    curve.setStyle(Qwt.QwtPlotCurve.Lines)
+
+    return curve
+
+
 def plot_production_by_state():
     """Show data in qwt plot"""
 
@@ -85,29 +98,25 @@ def plot_production_by_state():
     tx_vals = []
     ak_vals = []
     ca_vals = []
-    y_vals = []
+    x_vals = []
 
-    y_vals = hdf5.root.data.production_by_state_month.cols.date[:]
+    x_vals = hdf5.root.data.production_by_state_month.cols.date[:]
     la_vals = hdf5.root.data.production_by_state_month.cols.la_barrels[:]
     tx_vals = hdf5.root.data.production_by_state_month.cols.tx_barrels[:]
     ak_vals = hdf5.root.data.production_by_state_month.cols.ak_barrels[:]
     ca_vals = hdf5.root.data.production_by_state_month.cols.ca_barrels[:]
 
-    curve = Qwt.QwtPlotCurve("La")
+    curve = _create_curve(x_vals, la_vals, QtCore.Qt.green)
     curve.attach(plot)
-    curve.setData(la_vals, y_vals)
 
-    curve = Qwt.QwtPlotCurve("Tx")
+    curve = _create_curve(x_vals, tx_vals, QtCore.Qt.blue)
     curve.attach(plot)
-    curve.setData(tx_vals, y_vals)
 
-    curve = Qwt.QwtPlotCurve("Ak")
+    curve = _create_curve(x_vals, ak_vals, QtCore.Qt.red)
     curve.attach(plot)
-    curve.setData(ak_vals, y_vals)
 
-    curve = Qwt.QwtPlotCurve("Ca")
+    curve = _create_curve(x_vals, ca_vals, QtCore.Qt.yellow)
     curve.attach(plot)
-    curve.setData(ca_vals, y_vals)
 
     plot.replot()
 
