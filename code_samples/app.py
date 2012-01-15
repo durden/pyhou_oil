@@ -4,11 +4,27 @@
 Simple app to demonstrate writing an MVC application for oil industry.
 """
 
+import datetime
 import sys
+
 from PyQt4 import QtGui
 import PyQt4.Qwt5 as Qwt
+
 import tables
+
 import conversion
+
+
+class TimeScaleDraw(Qwt.QwtScaleDraw):
+    """Scale to display time values in month/year"""
+
+    def label(self, value):
+        """
+        Convert time value into string-friendly label to be placed on a plot
+        """
+
+        date = datetime.datetime.fromtimestamp(value)
+        return Qwt.QwtText((date.strftime("%b/%Y")))
 
 
 def qwt():
@@ -16,8 +32,11 @@ def qwt():
 
     plot = Qwt.QwtPlot()
     plot.setTitle("Oil Production by Year")
-    plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Year")
+    plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Date")
     plot.setAxisTitle(Qwt.QwtPlot.yLeft, "Barrels (in thousands)")
+
+    plot.setAxisScaleDraw(Qwt.QwtPlot.xBottom, TimeScaleDraw())
+
     curve = Qwt.QwtPlotCurve("Barrels (in thousands)")
 
     f = tables.openFile(conversion.HDF5_FILENAME)
