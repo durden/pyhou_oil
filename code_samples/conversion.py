@@ -11,8 +11,8 @@ HDF5_FILENAME = 'oil_production.h5'
 XLS_FILENAME = './sample_data/PET_CRD_CRPDN_ADC_MBBL_M.xls'
 
 
-class OilProductionByYear(tables.IsDescription):
-    """Data model class for oil production by year"""
+class OilProductionByMonth(tables.IsDescription):
+    """Data model class for oil production by month"""
 
     date = tables.Int32Col()
     barrels = tables.Time64Col()
@@ -36,7 +36,7 @@ def create_hdf5_file(filename):
     group = h5file.createGroup("/", 'data', 'Production by Year')
 
     # Create one table on it
-    table = h5file.createTable(group, 'production', OilProductionByYear,
+    table = h5file.createTable(group, 'production', OilProductionByMonth,
                                                             "Oil Production")
     return (h5file, table)
 
