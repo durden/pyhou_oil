@@ -23,6 +23,8 @@ class TimeScaleDraw(Qwt.QwtScaleDraw):
         Convert time value into string-friendly label to be placed on a plot
         """
 
+        super(TimeScaleDraw, self).label(value)
+
         date = datetime.datetime.fromtimestamp(value)
         return Qwt.QwtText((date.strftime("%b/%Y")))
 
@@ -35,15 +37,16 @@ def qwt():
     plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Date")
     plot.setAxisTitle(Qwt.QwtPlot.yLeft, "Barrels (in thousands)")
 
+    # Need custom scale to set labels to month/year
     plot.setAxisScaleDraw(Qwt.QwtPlot.xBottom, TimeScaleDraw())
 
     curve = Qwt.QwtPlotCurve("Barrels (in thousands)")
 
-    f = tables.openFile(conversion.HDF5_FILENAME)
+    hdf5 = tables.openFile(conversion.HDF5_FILENAME)
     x_vals = []
     y_vals = []
 
-    for row in f.root.data.production:
+    for row in hdf5.root.data.production:
         y_vals.append(row[0])
         x_vals.append(row[1])
 

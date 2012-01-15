@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Convert excel spreadsheet to hdf5 format
+"""
+
 import datetime
 import time
 
@@ -21,8 +25,8 @@ class OilProductionByMonth(tables.IsDescription):
 def get_xls_data(filename):
     """Get data from given xls filename"""
 
-    f = xlrd.open_workbook(filename=filename)
-    return (f, f.sheet_by_index(1))
+    workbook = xlrd.open_workbook(filename=filename)
+    return (workbook, workbook.sheet_by_index(1))
 
 
 def create_hdf5_file(filename):
