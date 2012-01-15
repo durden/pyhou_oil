@@ -46,7 +46,7 @@ class ExcelToHdf5(object):
 
         # Sheet indexes we support
         if supported_sheets is None:
-            self.supported_sheets = [1,2]
+            self.supported_sheets = [1, 2]
 
         # Table for each sheet in xls file
         self.tables = []
