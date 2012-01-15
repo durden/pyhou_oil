@@ -44,7 +44,7 @@ def plot_production_by_month():
     x_vals = []
     y_vals = []
 
-    for row in hdf5.root.data.production:
+    for row in hdf5.root.data.production_by_month:
         y_vals.append(row[0])
         x_vals.append(row[1])
 
@@ -62,7 +62,7 @@ def main():
 
     # Convert data then we can interface with pytables exclusively
     conversion.convert_xls_to_hdf5(conversion.XLS_FILENAME,
-                                                conversion.HDF5_FILENAME, 1)
+                                                conversion.HDF5_FILENAME)
     app = QtGui.QApplication(sys.argv)
     window = QtGui.QMainWindow()
 
