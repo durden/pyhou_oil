@@ -46,7 +46,7 @@ def plot_production_by_month():
     """Show data in qwt plot"""
 
     plot = Qwt.QwtPlot()
-    plot.setTitle("Oil Production by Month")
+    plot.setTitle("Oil Production for USA by Month")
     plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Date")
     plot.setAxisTitle(Qwt.QwtPlot.yLeft, "Barrels (in thousands)")
 
@@ -86,7 +86,7 @@ def plot_production_by_state():
     """Show data in qwt plot"""
 
     plot = Qwt.QwtPlot()
-    plot.setTitle("Oil Production by Month")
+    plot.setTitle("Oil Production by State")
     plot.setAxisTitle(Qwt.QwtPlot.xBottom, "Date")
     plot.setAxisTitle(Qwt.QwtPlot.yLeft, "Barrels (in thousands)")
 
@@ -128,12 +128,14 @@ def main():
     app = QtGui.QApplication(sys.argv)
     window = QtGui.QMainWindow()
 
+    window.setWindowTitle('PyHOU Sample App')
     window.setCentralWidget(plot_production_by_month())
     window.show()
 
     state_prod_window = StateProductionDialog(plot_production_by_state(),
                                                                         window)
     state_prod_window.show()
+    state_prod_window.setWindowTitle('Production by State')
 
     sys.exit(app.exec_())
 
