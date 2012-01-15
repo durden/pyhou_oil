@@ -9,6 +9,7 @@ from PyQt4 import QtGui
 import PyQt4.Qwt5 as Qwt
 import numpy as np
 
+
 def qwt():
     """Show data in qwt plot"""
 
@@ -16,14 +17,15 @@ def qwt():
     plot.setTitle("Oil Production by Year")
     curve = Qwt.QwtPlotCurve("Barrels (in thousands)")
 
-    x = np.arange(-2*np.pi, 2*np.pi, 0.01)
-    y = np.arange(-2*np.pi, 2*np.pi, 0.01)
+    x = np.arange(-2 * np.pi, 2 * np.pi, 0.01)
+    y = np.arange(-2 * np.pi, 2 * np.pi, 0.01)
 
     curve.setData(x, y)
     curve.attach(plot)
     plot.replot()
 
     return plot
+
 
 def main():
     """main"""
@@ -35,6 +37,7 @@ def main():
     window.show()
 
     sys.exit(app.exec_())
+
 
 if __name__ == "__main__":
     main()

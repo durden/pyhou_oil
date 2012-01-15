@@ -3,9 +3,11 @@
 import xlrd
 import tables
 
+
 class OilProductionByYear(tables.IsDescription):
     month = tables.Int32Col()
     barrels = tables.Int64Col()
+
 
 def get_xls_data():
     """"""
@@ -13,12 +15,13 @@ def get_xls_data():
                         filename='./sample_data/PET_CRD_CRPDN_ADC_MBBL_M.xls')
     return f.sheet_by_index(1)
 
+
 def create_hdf5_file():
     """"""
     filename = "test.h5"
 
     # Open a file in "w"rite mode
-    h5file = tables.openFile(filename, mode = "w", title = "Test file")
+    h5file = tables.openFile(filename, mode="w", title="Test file")
 
     # Create a new group under "/" (root)
     group = h5file.createGroup("/", 'production', 'Production by Year')
@@ -27,6 +30,7 @@ def create_hdf5_file():
     table = h5file.createTable(group, 'readout', OilProductionByYear,
                                                             "Readout example")
     return (h5file, table)
+
 
 def populate_hdf5(data, hdf5_table):
     """"""
@@ -39,6 +43,7 @@ def populate_hdf5(data, hdf5_table):
         oil['month'] = values[0]
         oil['barrels'] = values[1]
         oil.append()
+
 
 if __name__ == "__main__":
     xls = get_xls_data()
