@@ -30,7 +30,7 @@ def create_hdf5_file(filename):
                                                 title="Oil Production by Year")
 
     # Create a new group under "/" (root)
-    group = h5file.createGroup("/", 'root', 'Production by Year')
+    group = h5file.createGroup("/", 'data', 'Production by Year')
 
     # Create one table on it
     table = h5file.createTable(group, 'production', OilProductionByYear,
