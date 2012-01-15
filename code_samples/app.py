@@ -94,11 +94,6 @@ def plot_production_by_state():
     plot.setAxisScaleDraw(Qwt.QwtPlot.xBottom, TimeScaleDraw())
 
     hdf5 = tables.openFile(conversion.HDF5_FILENAME)
-    la_vals = []
-    tx_vals = []
-    ak_vals = []
-    ca_vals = []
-    x_vals = []
 
     x_vals = hdf5.root.data.production_by_state_month.cols.date[:]
     la_vals = hdf5.root.data.production_by_state_month.cols.la_barrels[:]
