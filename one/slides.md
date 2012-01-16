@@ -1,5 +1,11 @@
 <!SLIDE bullets>
 
+.notes Links to open for talk:
+.notes durden.github.com/pyhou_oil
+.notes https://docs.google.com/spreadsheet/ccc?key=0AnUBhQqsJgE5dDlyQTFwWDkxbmtCbFRqUUp2b0x3bHc&hl=en_US&pli=1#gid=2
+.notes http://explore.data.gov/Energy-and-Utilities/Monthly-Crude-Oil-Production/nxvx-he4x
+.notes http://www.pytables.org/moin/HowToUse#GettingStarted
+
 Python in the Oil and Gas industry
 ========================
 
@@ -209,3 +215,11 @@ Links
     - [@durden20](http://twitter.com/#!/durden20)
     - [http://github.com/durden](http://github.com/durden)
     - [http://www.lukelee.net](http://www.lukelee.net)
+
+- Pycon
+    - [hdf5](https://us.pycon.org/2012/schedule/presentation/231/)
+    - [pyqt](https://us.pycon.org/2012/schedule/presentation/374/)
+    - [matplotlib](https://us.pycon.org/2012/schedule/presentation/238/)
+    - [high performance 1](https://us.pycon.org/2012/schedule/presentation/174/)
+    - [scikit-learn](https://us.pycon.org/2012/schedule/presentation/195/)
+    - [high performance 2](https://us.pycon.org/2012/schedule/presentation/343/)
