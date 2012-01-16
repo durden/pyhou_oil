@@ -6,3 +6,6 @@ This repository contains the source for a short talk to be given to the
 
 The presentation requires [showoff](https://github.com/schacon/showoff) to
 view.
+
+You can view a live version of the presentation
+[here](http://durden.github.com/pyhou_oil)

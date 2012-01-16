@@ -36,7 +36,7 @@ Sell your boss on Python
 
 Not just technical
 ========
-Get away from computer sometimes
+Get away from computer!
 
 Get into open source!
 
@@ -101,7 +101,7 @@ Python tools
 - Crunch numbers
     - Numpy, scipy, pytables, HDF5
 - Visualize
-    - 2/3 D plots (PyQt, PyQWT, Pyside, VTK, mayavi, matplotlib)
+    - 2/3 D plots (PyQt, PyQwt, Pyside, VTK, mayavi, matplotlib)
 - Location
     - Esri (ArcPy/geoprocessing)
     - SGeMS (geostatical modeling)
@@ -136,7 +136,7 @@ Our app
 - Model
     - HDF5, PyTables
 - View
-    - PyQt/PyQWT/Pyside
+    - PyQt/PyQwt/Pyside
 - Controller
     - Numpy, Scipy
 
@@ -169,10 +169,20 @@ PyTables
 - Numpy to boost performance (in memory buffers)
 - Think ORM for HDF5
 
-<!SLIDE smaller>
+<!SLIDE incremental smaller>
 
 View
 =====
+PyQt/PyQwt
+---------
+- PyQt
+    - Python bindings to Qt toolkit
+    - Cross-platform
+    - Includes GUI, network, XML, SQL, etc.
+- PyQwt
+    - Built on PyQt/Qwt for science/engineering apps
+    - Much faster than matplotlib
+    - Bad Python docs, use C++ docs
 
 <!SLIDE incremental>
 
