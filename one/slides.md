@@ -123,7 +123,8 @@ Let's build an app!
 .notes Use MVC b/c we're hip and it works
 
 - MVC design pattern
-- Familar design pattern
+- Django - MVC (or MVT) you've seen before
+
 - Model
     - Sqlite/Django ORM
 - View
@@ -131,13 +132,15 @@ Let's build an app!
 - Controller
     - Python glue/Django/Flask
 
-<!SLIDE incremental>
+<!SLIDE incremental smaller>
 
 Our app
 =======
 .notes Think back to requirements
 .notes Crunch big numbers, visualization
 .notes Forget location data for now
+
+- Sample oil data from data.gov
 
 - Model
     - HDF5, PyTables
@@ -201,6 +204,10 @@ Controller
     - Stats
     - Integration
     - Optimization
+
+<!SLIDE>
+Code!
+=====
 
 <!SLIDE smaller>
 
