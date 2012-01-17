@@ -1,5 +1,11 @@
 <!SLIDE bullets>
 
+.notes Links to open for talk:
+.notes durden.github.com/pyhou_oil
+.notes https://docs.google.com/spreadsheet/ccc?key=0AnUBhQqsJgE5dDlyQTFwWDkxbmtCbFRqUUp2b0x3bHc&hl=en_US&pli=1#gid=2
+.notes http://explore.data.gov/Energy-and-Utilities/Monthly-Crude-Oil-Production/nxvx-he4x
+.notes http://www.pytables.org/moin/HowToUse#GettingStarted
+
 Python in the Oil and Gas industry
 ========================
 
@@ -36,7 +42,7 @@ Sell your boss on Python
 
 Not just technical
 ========
-Get away from computer sometimes
+Get away from computer!
 
 Get into open source!
 
@@ -101,7 +107,7 @@ Python tools
 - Crunch numbers
     - Numpy, scipy, pytables, HDF5
 - Visualize
-    - 2/3 D plots (PyQt, PyQWT, Pyside, VTK, mayavi, matplotlib)
+    - 2/3 D plots (PyQt, PyQwt, Pyside, VTK, mayavi, matplotlib)
 - Location
     - Esri (ArcPy/geoprocessing)
     - SGeMS (geostatical modeling)
@@ -117,7 +123,8 @@ Let's build an app!
 .notes Use MVC b/c we're hip and it works
 
 - MVC design pattern
-- Familar design pattern
+- Django - MVC (or MVT) you've seen before
+
 - Model
     - Sqlite/Django ORM
 - View
@@ -125,7 +132,7 @@ Let's build an app!
 - Controller
     - Python glue/Django/Flask
 
-<!SLIDE incremental>
+<!SLIDE incremental smaller>
 
 Our app
 =======
@@ -133,10 +140,12 @@ Our app
 .notes Crunch big numbers, visualization
 .notes Forget location data for now
 
+- Sample oil data from data.gov
+
 - Model
     - HDF5, PyTables
 - View
-    - PyQt/PyQWT/Pyside
+    - PyQt/PyQwt/Pyside
 - Controller
     - Numpy, Scipy
 
@@ -169,10 +178,20 @@ PyTables
 - Numpy to boost performance (in memory buffers)
 - Think ORM for HDF5
 
-<!SLIDE smaller>
+<!SLIDE incremental smaller>
 
 View
 =====
+PyQt/PyQwt
+---------
+- PyQt
+    - Python bindings to Qt toolkit
+    - Cross-platform
+    - Includes GUI, network, XML, SQL, etc.
+- PyQwt
+    - Built on PyQt/Qwt for science/engineering apps
+    - Much faster than matplotlib
+    - Bad Python docs, use C++ docs
 
 <!SLIDE incremental>
 
@@ -185,6 +204,10 @@ Controller
     - Stats
     - Integration
     - Optimization
+
+<!SLIDE>
+Code!
+=====
 
 <!SLIDE smaller>
 
@@ -199,3 +222,11 @@ Links
     - [@durden20](http://twitter.com/#!/durden20)
     - [http://github.com/durden](http://github.com/durden)
     - [http://www.lukelee.net](http://www.lukelee.net)
+
+- Pycon
+    - [hdf5](https://us.pycon.org/2012/schedule/presentation/231/)
+    - [pyqt](https://us.pycon.org/2012/schedule/presentation/374/)
+    - [matplotlib](https://us.pycon.org/2012/schedule/presentation/238/)
+    - [high performance 1](https://us.pycon.org/2012/schedule/presentation/174/)
+    - [scikit-learn](https://us.pycon.org/2012/schedule/presentation/195/)
+    - [high performance 2](https://us.pycon.org/2012/schedule/presentation/343/)
